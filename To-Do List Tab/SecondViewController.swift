@@ -41,6 +41,7 @@ class SecondViewController: UIViewController {
         if let list = toDoList as? NSArray {
             newToDoList = list as! [String]
             newToDoList.append(todo!)
+            UserDefaults.standard.set(newToDoList, forKey: "todolist")
         }
         
     }

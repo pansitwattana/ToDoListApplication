@@ -12,6 +12,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     var toDoList = [String]()
     
+    @IBOutlet weak var table: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -23,6 +24,17 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        let loadToDoList = UserDefaults.standard.object(forKey: "todolist")
+        
+        if let array = loadToDoList as? NSArray {
+            toDoList = array as! [String]
+            
+        }
+        print(toDoList)
+        table.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
