@@ -52,6 +52,15 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            toDoList.remove(at: indexPath.row)
+            
+            table.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            UserDefaults.standard.set(toDoList, forKey: "todolist")
+        }
+    }
+    
     public func AddToDo(toDo :String) -> Void {
         toDoList.append(toDo)
         UserDefaults.standard.set(toDoList, forKey: "todolist")
